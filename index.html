@@ -11,18 +11,18 @@
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
-      --bg-primary: #0a0a0a;
-      --bg-card: #141414;
-      --bg-card-hover: #1a1a1a;
-      --border: #1f1f1f;
-      --border-light: #2a2a2a;
-      --text-primary: #ffffff;
-      --text-secondary: #a0a0a0;
-      --text-muted: #666666;
-      --accent: #CC0000;
-      --accent-hover: #A80000;
-      --separator: #1a1a1a;
-      --red: #ef4444;
+      --bg-primary: #ffffff;
+      --bg-card: #f8f7f7;
+      --bg-card-hover: #f2f0f0;
+      --border: #e8e5e5;
+      --border-light: #d0cbcb;
+      --text-primary: #0a0a0a;
+      --text-secondary: #555555;
+      --text-muted: #888888;
+      --accent: #AF0000;
+      --accent-hover: #8A0000;
+      --separator: #e8e5e5;
+      --red: #AF0000;
       --font-display: 'DM Serif Display', serif;
       --font-body: 'DM Sans', sans-serif;
     }
@@ -40,7 +40,7 @@
 
     /* NAVBAR */
     .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 24px; height: 64px; display: flex; align-items: center; transition: background 0.3s ease, border-color 0.3s ease; border-bottom: 1px solid transparent; }
-    .navbar.scrolled { background: rgba(10,10,10,0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom-color: var(--border); }
+    .navbar.scrolled { background: rgba(255,255,255,0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom-color: var(--border); }
     .navbar__inner { max-width: 1100px; margin: 0 auto; width: 100%; display: flex; align-items: center; justify-content: space-between; }
     .navbar__logo { font-family: var(--font-body); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-primary); text-decoration: none; }
     .navbar__links { display: flex; gap: 32px; list-style: none; }
@@ -63,8 +63,8 @@
     .video-section { padding: 0 0 48px; }
     .video-placeholder { width: 100%; aspect-ratio: 16/9; background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; cursor: pointer; position: relative; overflow: hidden; transition: border-color 0.3s ease; }
     .video-placeholder:hover { border-color: var(--border-light); }
-    .play-btn { width: 80px; height: 80px; border-radius: 50%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; transition: transform 0.3s ease, background 0.3s ease; }
-    .video-placeholder:hover .play-btn { transform: scale(1.08); background: rgba(255,255,255,0.15); }
+    .play-btn { width: 80px; height: 80px; border-radius: 50%; background: rgba(0,0,0,0.07); border: 1px solid rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; transition: transform 0.3s ease, background 0.3s ease; }
+    .video-placeholder:hover .play-btn { transform: scale(1.08); background: rgba(0,0,0,0.12); }
     .play-btn svg { width: 24px; height: 24px; fill: var(--text-primary); margin-left: 3px; }
     .video-label { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; }
 
@@ -102,11 +102,11 @@
     .wydo-card__text { color: var(--text-secondary); font-size: 0.93rem; line-height: 1.7; }
 
     /* CTA */
-    .cta { padding: 100px 0; text-align: center; background: linear-gradient(180deg, var(--bg-primary) 0%, #0d0a1e 50%, #100c2a 100%); position: relative; }
-    .cta::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 600px; height: 400px; background: radial-gradient(ellipse, rgba(139,92,246,0.08) 0%, transparent 70%); pointer-events: none; }
-    .cta__title { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 36px; position: relative; }
-    .cta__btn { display: inline-flex; align-items: center; gap: 10px; background: var(--text-primary); color: var(--bg-primary); font-family: var(--font-body); font-size: 0.85rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; padding: 18px 48px; border-radius: 8px; border: none; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.3s ease; position: relative; }
-    .cta__btn:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(139,92,246,0.25), 0 8px 32px rgba(0,0,0,0.4); }
+    .cta { padding: 100px 0; text-align: center; background: linear-gradient(180deg, #ffffff 0%, #fdf5f5 50%, #faeaea 100%); position: relative; }
+    .cta::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 600px; height: 400px; background: radial-gradient(ellipse, rgba(175,0,0,0.06) 0%, transparent 70%); pointer-events: none; }
+    .cta__title { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 36px; position: relative; color: var(--text-primary); }
+    .cta__btn { display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: #ffffff; font-family: var(--font-body); font-size: 0.85rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; padding: 18px 48px; border-radius: 8px; border: none; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.3s ease; position: relative; }
+    .cta__btn:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(175,0,0,0.25), 0 8px 32px rgba(175,0,0,0.2); }
     .cta__btn:active { transform: translateY(0); }
 
     /* FOOTER */
@@ -114,7 +114,7 @@
     .footer__text { font-size: 0.8rem; color: var(--text-muted); font-weight: 400; }
 
     /* MOBILE MENU */
-    .mobile-menu { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(10,10,10,0.97); backdrop-filter: blur(20px); flex-direction: column; align-items: center; justify-content: center; gap: 32px; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    .mobile-menu { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(255,255,255,0.97); backdrop-filter: blur(20px); flex-direction: column; align-items: center; justify-content: center; gap: 32px; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
     .mobile-menu.open { display: flex; opacity: 1; pointer-events: all; }
     .mobile-menu a { font-size: 1.2rem; color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color 0.2s ease; }
     .mobile-menu a:hover { color: var(--text-primary); }
