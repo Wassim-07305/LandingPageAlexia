@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Success Manager — Off-Market · Alexia Laneau</title>
+  <meta name="description" content="Rejoins Off-Market en tant que Customer Success Manager. Accompagne des freelances à dépasser les 10K€/mois.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-card: #141414;
+      --bg-card-hover: #1a1a1a;
+      --border: #1f1f1f;
+      --border-light: #2a2a2a;
+      --text-primary: #ffffff;
+      --text-secondary: #a0a0a0;
+      --text-muted: #666666;
+      --accent: #8b5cf6;
+      --accent-hover: #7c3aed;
+      --separator: #1a1a1a;
+      --red: #ef4444;
+      --font-display: 'DM Serif Display', serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    body { font-family: var(--font-body); background-color: var(--bg-primary); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; width: 100%; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .section-separator { border: none; height: 1px; background: var(--separator); margin: 0; max-width: 100%; }
+    .two-col { display: grid; grid-template-columns: 200px 1fr; gap: 60px; padding: 80px 0; }
+    .two-col__label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-muted); padding-top: 4px; }
+    .two-col__content h3 { font-family: var(--font-body); font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-bottom: 16px; }
+    .two-col__content p { color: var(--text-secondary); line-height: 1.7; font-size: 1rem; }
+    .two-col__content p + p { margin-top: 16px; }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* NAVBAR */
+    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 24px; height: 64px; display: flex; align-items: center; transition: background 0.3s ease, border-color 0.3s ease; border-bottom: 1px solid transparent; }
+    .navbar.scrolled { background: rgba(10,10,10,0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom-color: var(--border); }
+    .navbar__inner { max-width: 1100px; margin: 0 auto; width: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .navbar__logo { font-family: var(--font-body); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-primary); text-decoration: none; }
+    .navbar__links { display: flex; gap: 32px; list-style: none; }
+    .navbar__links a { font-size: 0.8rem; color: var(--text-muted); text-decoration: none; transition: color 0.2s ease; font-weight: 500; }
+    .navbar__links a:hover { color: var(--text-primary); }
+    .navbar__menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .navbar__menu-btn span { display: block; width: 20px; height: 2px; background: var(--text-primary); margin: 5px 0; transition: transform 0.3s ease, opacity 0.3s ease; }
+
+    /* HERO */
+    .hero { padding-top: 120px; padding-bottom: 32px; }
+    .hero__title { font-family: var(--font-display); font-size: clamp(2.8rem, 7vw, 5.5rem); font-weight: 400; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 32px; }
+    .hero__badges { display: flex; gap: 0; }
+    .hero__badge { padding: 20px 28px; border: 1px solid var(--border); border-right: none; }
+    .hero__badge:first-child { border-radius: 8px 0 0 8px; }
+    .hero__badge:last-child { border-right: 1px solid var(--border); border-radius: 0 8px 8px 0; }
+    .hero__badge-label { font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-muted); margin-bottom: 6px; }
+    .hero__badge-value { font-size: 0.95rem; font-weight: 600; color: var(--text-primary); white-space: nowrap; }
+
+    /* VIDEO */
+    .video-section { padding: 0 0 48px; }
+    .video-placeholder { width: 100%; aspect-ratio: 16/9; background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; cursor: pointer; position: relative; overflow: hidden; transition: border-color 0.3s ease; }
+    .video-placeholder:hover { border-color: var(--border-light); }
+    .play-btn { width: 80px; height: 80px; border-radius: 50%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; transition: transform 0.3s ease, background 0.3s ease; }
+    .video-placeholder:hover .play-btn { transform: scale(1.08); background: rgba(255,255,255,0.15); }
+    .play-btn svg { width: 24px; height: 24px; fill: var(--text-primary); margin-left: 3px; }
+    .video-label { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; }
+
+    /* LISTS */
+    .bullet-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+    .bullet-list li { color: var(--text-secondary); line-height: 1.7; padding-left: 24px; position: relative; font-size: 1rem; }
+    .bullet-list li::before { content: ''; position: absolute; left: 0; top: 10px; width: 7px; height: 7px; border-radius: 50%; background: var(--text-primary); }
+    .bullet-list li strong { color: var(--text-primary); font-weight: 600; }
+    .bullet-list--red li::before { background: var(--red); }
+
+    /* REQ CARDS */
+    .req-cards { display: flex; flex-direction: column; gap: 16px; }
+    .req-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 28px 32px; transition: border-color 0.3s ease, background 0.3s ease; }
+    .req-card:hover { border-color: var(--border-light); background: var(--bg-card-hover); }
+    .req-card__title { font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; }
+    .req-card__desc { color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem; }
+
+    /* COMP CARDS */
+    .comp-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
+    .comp-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 28px; transition: border-color 0.3s ease, background 0.3s ease; }
+    .comp-card:hover { border-color: var(--border-light); background: var(--bg-card-hover); }
+    .comp-card__level { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted); margin-bottom: 12px; }
+    .comp-card__clients { font-size: 1.8rem; font-family: var(--font-display); color: var(--text-primary); margin-bottom: 4px; }
+    .comp-card__sub { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; }
+    .comp-card__amounts { display: flex; flex-direction: column; gap: 6px; padding-top: 16px; border-top: 1px solid var(--border); }
+    .comp-card__amounts span { font-size: 0.9rem; color: var(--text-secondary); }
+    .comp-card__amounts strong { color: var(--accent); font-weight: 700; }
+    .comp-note { color: var(--text-muted); font-size: 0.85rem; font-style: italic; line-height: 1.6; }
+
+    /* MISSIONS GRID */
+    .wydo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .wydo-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 28px; transition: border-color 0.3s ease, background 0.3s ease; }
+    .wydo-card:hover { border-color: var(--border-light); background: var(--bg-card-hover); }
+    .wydo-card__number { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 8px; background: var(--accent); color: var(--text-primary); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 16px; }
+    .wydo-card__text { color: var(--text-secondary); font-size: 0.93rem; line-height: 1.7; }
+
+    /* CTA */
+    .cta { padding: 100px 0; text-align: center; background: linear-gradient(180deg, var(--bg-primary) 0%, #0d0a1e 50%, #100c2a 100%); position: relative; }
+    .cta::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 600px; height: 400px; background: radial-gradient(ellipse, rgba(139,92,246,0.08) 0%, transparent 70%); pointer-events: none; }
+    .cta__title { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 36px; position: relative; }
+    .cta__btn { display: inline-flex; align-items: center; gap: 10px; background: var(--text-primary); color: var(--bg-primary); font-family: var(--font-body); font-size: 0.85rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; padding: 18px 48px; border-radius: 8px; border: none; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.3s ease; position: relative; }
+    .cta__btn:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(139,92,246,0.25), 0 8px 32px rgba(0,0,0,0.4); }
+    .cta__btn:active { transform: translateY(0); }
+
+    /* FOOTER */
+    .footer { padding: 40px 0; text-align: center; border-top: 1px solid var(--separator); }
+    .footer__text { font-size: 0.8rem; color: var(--text-muted); font-weight: 400; }
+
+    /* MOBILE MENU */
+    .mobile-menu { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(10,10,10,0.97); backdrop-filter: blur(20px); flex-direction: column; align-items: center; justify-content: center; gap: 32px; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    .mobile-menu.open { display: flex; opacity: 1; pointer-events: all; }
+    .mobile-menu a { font-size: 1.2rem; color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color 0.2s ease; }
+    .mobile-menu a:hover { color: var(--text-primary); }
+    .mobile-menu__close { position: absolute; top: 20px; right: 24px; background: none; border: none; color: var(--text-primary); font-size: 1.8rem; cursor: pointer; padding: 4px; line-height: 1; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .navbar__links { display: none; }
+      .navbar__menu-btn { display: block; }
+      .hero { padding-top: 100px; padding-bottom: 40px; }
+      .hero__title { font-size: clamp(2rem, 8vw, 3rem); margin-bottom: 28px; }
+      .hero__badges { flex-wrap: wrap; }
+      .hero__badge { flex: 1 1 calc(50% - 0px); min-width: 140px; padding: 16px 20px; border-right: none; border-bottom: none; }
+      .hero__badge:first-child { border-radius: 8px 0 0 0; }
+      .hero__badge:nth-child(2) { border-right: 1px solid var(--border); border-radius: 0 8px 0 0; }
+      .hero__badge:nth-child(3) { border-bottom: 1px solid var(--border); border-radius: 0 0 0 8px; }
+      .hero__badge:last-child { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); border-radius: 0 0 8px 0; }
+      .two-col { grid-template-columns: 1fr; gap: 20px; padding: 48px 0; }
+      .wydo-grid { grid-template-columns: 1fr; }
+      .comp-cards { grid-template-columns: 1fr; }
+      .cta { padding: 64px 0; }
+    }
+    @media (max-width: 480px) {
+      .container { padding: 0 16px; }
+      .hero__badges { flex-direction: column; }
+      .hero__badge { flex: 1 1 100%; border-right: 1px solid var(--border) !important; border-bottom: none !important; border-radius: 0 !important; }
+      .hero__badge:first-child { border-radius: 8px 8px 0 0 !important; }
+      .hero__badge:last-child { border-bottom: 1px solid var(--border) !important; border-radius: 0 0 8px 8px !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <a href="#" class="navbar__logo">Off-Market · Alexia Laneau</a>
+      <ul class="navbar__links">
+        <li><a href="#job-summary">Résumé</a></li>
+        <li><a href="#requirements">Prérequis</a></li>
+        <li><a href="#missions">Tes Missions</a></li>
+        <li><a href="#apply">Postuler</a></li>
+      </ul>
+      <button class="navbar__menu-btn" id="menu-btn" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-menu__close" id="menu-close" aria-label="Fermer le menu">&times;</button>
+    <a href="#job-summary">Résumé</a>
+    <a href="#requirements">Prérequis</a>
+    <a href="#missions">Tes Missions</a>
+    <a href="#apply">Postuler</a>
+  </div>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero container">
+      <h1 class="hero__title reveal">Customer<br>Success Manager</h1>
+      <div class="hero__badges reveal">
+        <div class="hero__badge">
+          <div class="hero__badge-label">Date de Publication</div>
+          <div class="hero__badge-value">Mars 2026</div>
+        </div>
+        <div class="hero__badge">
+          <div class="hero__badge-label">Poste</div>
+          <div class="hero__badge-value">CSM</div>
+        </div>
+        <div class="hero__badge">
+          <div class="hero__badge-label">Lieu</div>
+          <div class="hero__badge-value">À Distance</div>
+        </div>
+        <div class="hero__badge">
+          <div class="hero__badge-label">Type</div>
+          <div class="hero__badge-value">Freelance — Flexible</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO -->
+    <section class="video-section container reveal">
+      <div class="video-placeholder">
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <div class="video-label">Vidéo de présentation — bientôt disponible</div>
+      </div>
+    </section>
+
+    <hr class="section-separator container">
+
+    <!-- JOB SUMMARY -->
+    <section id="job-summary" class="container">
+      <div class="two-col reveal">
+        <div class="two-col__label">Résumé du Poste</div>
+        <div class="two-col__content">
+          <p>On accompagne des freelances à dépasser les 10K€/mois grâce à un programme stratégique et opérationnel sur 4 mois — le Système Off-Market. Le programme inclut un espace formation, 10 calls stratégiques, 2 consultants experts (LinkedIn + Instagram), un setter dédié, un support réactif et un groupe privé, le tout centralisé dans une application dédiée.</p>
+          <p>Aujourd'hui, Alexia gère tout le suivi client seule. On recrute le <strong style="color: var(--text-primary);">premier CSM de l'équipe</strong> — à terme, tu gères les prochains.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-separator container">
+
+    <!-- TON RÔLE -->
+    <section class="container">
+      <div class="two-col reveal">
+        <div class="two-col__label">Ton Rôle</div>
+        <div class="two-col__content">
+          <h3>Customer Success Manager</h3>
+          <p>En tant que CSM, tu seras le pilier de l'expérience client chez Off-Market. Ta mission : accompagner chaque client freelance du jour où il rejoint le programme jusqu'à ce qu'il dépasse les 10K€/mois — et au-delà.</p>
+          <p>Tu géreras un portefeuille de 10 à 20 clients en parallèle. Tu seras en première ligne pour les onboarder, assurer le suivi sur les 4 phases du programme (Fondations, Acquisition, Scaling, Autonomie), détecter les blocages et garantir que chaque client avance concrètement. Tu es le lien direct entre Alexia et les clients.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-separator container">
+
+    <!-- CANDIDAT IDÉAL -->
+    <section class="container">
+      <div class="two-col reveal">
+        <div class="two-col__label">Candidat Idéal</div>
+        <div class="two-col__content">
+          <ul class="bullet-list">
+            <li>Tu gères <strong>10 à 20 clients en parallèle</strong> sans perdre le fil — chacun avec son avancement, ses blocages et ses échéances</li>
+            <li>Tu utilises l'application Off-Market dédiée tous les jours et tu sais en tirer le maximum pour ton suivi client</li>
+            <li>Quand un client est bloqué, <strong>tu le détectes avant qu'il ne te le dise</strong>. Tu es proactif(ve), pas réactif(ve)</li>
+            <li>Tu réponds aux clients sous <strong>6h ouvrées</strong> via l'app. Pas de client laissé sans réponse</li>
+            <li>Tu fais des points réguliers à Alexia sans qu'on te le demande — un message rapide sur la santé du portefeuille, ça suffit</li>
+            <li>Tu connais le monde du <strong>freelancing, du coaching ou du consulting</strong> — tu comprends les enjeux et les stress de nos clients</li>
+            <li>Tu veux <strong>construire quelque chose</strong>, pas juste "faire des missions". Tu vois ce poste comme une opportunité d'évoluer en bras droit, pas un gagne-pain temporaire</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-separator container">
+
+    <!-- PRÉREQUIS -->
+    <section id="requirements" class="container">
+      <div class="two-col reveal">
+        <div class="two-col__label">Prérequis</div>
+        <div class="two-col__content">
+          <div class="req-cards">
+            <div class="req-card">
+              <div class="req-card__title">Expérience en relation client / Customer Success</div>
+              <div class="req-card__desc">Tu as déjà géré un portefeuille clients. Tu sais onboarder, suivre, relancer, et maintenir un haut niveau de satisfaction. Account management, CSM, coaching — l'intitulé importe peu, c'est l'expérience terrain qui compte.</div>
+            </div>
+            <div class="req-card">
+              <div class="req-card__title">Connaissance du monde freelance / coaching / consulting</div>
+              <div class="req-card__desc">C'est le cœur de notre clientèle. Tu comprends les problématiques de positionnement, d'acquisition, de pricing et de scaling d'une activité indépendante. Si tu n'as jamais touché à cet univers, ce poste n'est pas pour toi.</div>
+            </div>
+            <div class="req-card">
+              <div class="req-card__title">Excellente communication écrite et orale en français</div>
+              <div class="req-card__desc">Tu es le point de contact principal des clients. Tes messages, tes relances, tes comptes-rendus — tout doit être clair, empathique et professionnel.</div>
+            </div>
+            <div class="req-card">
+              <div class="req-card__title">Organisation et rigueur</div>
+              <div class="req-card__desc">10 à 20 clients en parallèle, chacun à une étape différente du programme. Tu sais prioriser, structurer ton suivi et ne rien laisser passer.</div>
+            </div>
+            <div class="req-card">
+              <div class="req-card__title">Autonomie et proactivité</div>
+              <div class="req-card__desc">Tu n'attends pas qu'on te dise quoi faire. Tu identifies les clients en difficulté, tu proposes des solutions, tu escalades quand c'est nécessaire. On te forme au démarrage, mais on cherche quelqu'un qui prend les rênes rapidement.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-separator container">
+
+    <!-- OUTILS -->
+    <section class="container">
+      <div class="two-col reveal">
+        <div class="two-col__label">Outils</div>
+        <div class="two-col__content">
+          <div class="req-card">
+            <div class="req-card__title">Application Off-Market dédiée</div>
+            <div class="req-card__desc">Ton outil unique au quotidien. L'app centralise tout : suivi client, messagerie, espace formation (vidéos + workbooks), gestion du portefeuille, échanges avec Alexia et communication avec les clients. Tout est au même endroit, conçu pour que tu sois efficace sans jongler entre 10 outils.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-separator container">
+
+    <!-- RÉMUNÉRATION -->
+    <section class="container">
+      <div class="two-col reveal">
+        <div class="two-col__label">Rémunération</div>
+        <div class="two-col__content">
+          <p style="color: var(--text-secondary); line-height: 1.7; font-size: 1rem; margin-bottom: 28px;">On ne paye pas à l'heure. On paye par client géré — <strong style="color: var(--text-primary);">10% du montant de l'offre par client, soit 500€ par client</strong>. Plus tu gères de clients, plus tu gagnes.</p>
+          <div class="comp-cards">
+            <div class="comp-card">
+              <div class="comp-card__level">Rythme Standard</div>
+              <div class="comp-card__clients">10</div>
+              <div class="comp-card__sub">clients / mois</div>
+              <div class="comp-card__amounts">
+                <span><strong>5 000€</strong> / mois</span>
+                <span>60 000€ / an</span>
+              </div>
+            </div>
+            <div class="comp-card">
+              <div class="comp-card__level">Objectif Réaliste</div>
+              <div class="comp-card__clients">15</div>
+              <div class="comp-card__sub">clients / mois</div>
+              <div class="comp-card__amounts">
+                <span><strong>7 500€</strong> / mois</span>
+                <span>90 000€ / an</span>
+              </div>
+            </div>
+            <div class="comp-card">
+              <div class="comp-card__level">Haute Performance</div>
+              <div class="comp-card__clients">20</div>
+              <div class="comp-card__sub">clients / mois</div>
+              <div class="comp-card__amounts">
+                <span><strong>10 000€</strong> / mois</span>
+                <span>120 000€ / an</span>
+              </div>
+            </div>
+          </div>
+          <p class="comp-note">Les montants sont nets (tu es freelance / auto-entrepreneur). Paiement à chaque cycle de suivi.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-separator container">
+
+    <!-- MISSIONS -->
+    <section id="missions" class="container">
+      <div class="two-col reveal">
+        <div class="two-col__label">Tes Missions</div>
+        <div class="two-col__content">
+          <div class="wydo-grid">
+            <div class="wydo-card">
+              <div class="wydo-card__number">001</div>
+              <div class="wydo-card__text">Onboarder chaque nouveau client dans le programme : installation dans l'app dédiée, présentation de la roadmap des 4 mois, mise en route des workbooks dès la première semaine.</div>
+            </div>
+            <div class="wydo-card">
+              <div class="wydo-card__number">002</div>
+              <div class="wydo-card__text">Suivre l'avancement de chaque client sur les 4 phases (Fondations, Acquisition, Scaling, Autonomie) et s'assurer qu'il respecte le rythme prévu.</div>
+            </div>
+            <div class="wydo-card">
+              <div class="wydo-card__number">003</div>
+              <div class="wydo-card__text">Détecter les blocages et relancer proactivement les clients inactifs. Coordonner les interventions des consultants LinkedIn et Instagram.</div>
+            </div>
+            <div class="wydo-card">
+              <div class="wydo-card__number">004</div>
+              <div class="wydo-card__text">Assurer le support client réactif via l'app (réponse sous 6h ouvrées), animer le groupe privé et escalader les problèmes complexes à Alexia.</div>
+            </div>
+            <div class="wydo-card">
+              <div class="wydo-card__number">005</div>
+              <div class="wydo-card__text">Suivre les KPIs de chaque client (prospection, taux de closing, CA) et remonter un reporting régulier à Alexia sur la santé du portefeuille.</div>
+            </div>
+            <div class="wydo-card">
+              <div class="wydo-card__number">006</div>
+              <div class="wydo-card__text">Évoluer avec la structure — tu es le premier CSM. L'objectif à 6 mois : tu formes et supervises les prochains CSM, et ta rémunération évolue en conséquence.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-separator container">
+
+    <!-- NE POSTULE PAS SI -->
+    <section class="container">
+      <div class="two-col reveal">
+        <div class="two-col__label">Ne Postule<br>Pas Si</div>
+        <div class="two-col__content">
+          <ul class="bullet-list bullet-list--red">
+            <li>Tu cherches un job passif ou avec peu d'engagement. Ce poste demande un engagement régulier et sérieux dans la réussite des clients.</li>
+            <li>Tu n'as aucune expérience en relation client. On cherche quelqu'un qui sait déjà gérer des interloculteurs.</li>
+            <li>Tu ne connais pas le monde du freelancing ou du coaching. Comprendre les enjeux de nos clients est indispensable.</li>
+            <li>Tu n'es pas disponible rapidement. On a besoin de quelqu'un opérationnel vite.</li>
+            <li>Tu as déjà un projet en parallèle ou tu comptes en créer un dans l'année. On a besoin de quelqu'un 100% focus sur Off-Market.</li>
+            <li>Tu n'es pas autonome. On te forme et on t'accompagne au démarrage, mais on ne veut pas micro-manager.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- CTA -->
+  <section class="cta" id="apply">
+    <div class="container">
+      <h2 class="cta__title reveal">Tu penses être le bon profil ?<br>Postule aujourd'hui</h2>
+      <a href="https://form.typeform.com/to/UzUs2RMy" target="_blank" rel="noopener noreferrer" class="cta__btn reveal">Postuler maintenant</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer__text">© 2026 Alexia Laneau — Off-Market — Tous droits réservés</p>
+    </div>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    const menuBtn = document.getElementById('menu-btn');
+    const menuClose = document.getElementById('menu-close');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => { mobileMenu.classList.add('open'); document.body.style.overflow = 'hidden'; });
+    menuClose.addEventListener('click', () => { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; });
+    mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }));
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        const target = document.querySelector(targetId);
+        if (target) { e.preventDefault(); window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - navbar.offsetHeight - 20, behavior: 'smooth' }); }
+      });
+    });
+  </script>
+</body>
+</html>
